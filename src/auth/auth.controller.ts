@@ -9,13 +9,13 @@ import { SkipAuth } from './skip-auth.decorator';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post()
+  @Post('register')
   @SkipAuth()
   async register(@Body() registerDto: RegisterDto): Promise<TokenResponseDto> {
     return await this.authService.register(registerDto);
   }
 
-  @Post()
+  @Post('login')
   @SkipAuth()
   async login(@Body() loginDto: LoginDto): Promise<TokenResponseDto> {
     return await this.authService.login(loginDto);
