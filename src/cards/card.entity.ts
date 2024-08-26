@@ -3,10 +3,12 @@
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { BoardColumn } from '../board-columns/board-column.entity';
+import { Comment } from '../comments/comment.entity';
 
 @Entity()
 export class Card {
@@ -29,4 +31,7 @@ export class Card {
     onDelete: 'CASCADE',
   })
   column: BoardColumn;
+
+  @OneToMany(() => Comment, (comment) => comment.card, { onDelete: 'CASCADE' })
+  comments: Comment[];
 }

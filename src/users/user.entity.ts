@@ -7,6 +7,7 @@
   UpdateDateColumn,
 } from 'typeorm';
 import { BoardColumn } from '../board-columns/board-column.entity';
+import { Comment } from '../comments/comment.entity';
 
 @Entity()
 export class User {
@@ -32,4 +33,7 @@ export class User {
     onDelete: 'CASCADE',
   })
   boardColumns: BoardColumn[];
+
+  @OneToMany(() => Comment, (comment) => comment.author, {})
+  comments: Comment[];
 }

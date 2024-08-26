@@ -7,6 +7,8 @@ import { BoardColumn } from './board-columns/board-column.entity';
 import { AuthModule } from './auth/auth.module';
 import { CardsModule } from './cards/cards.module';
 import { Card } from './cards/card.entity';
+import { Comment } from './comments/comment.entity';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -17,12 +19,13 @@ import { Card } from './cards/card.entity';
       username: 'admin',
       password: 'password',
       database: 'TrelloDatabase',
-      entities: [User, BoardColumn, Card],
+      entities: [User, BoardColumn, Card, Comment],
       synchronize: true,
     }),
     UsersModule,
     BoardColumnsModule,
     CardsModule,
+    CommentsModule,
     AuthModule,
   ],
   controllers: [],

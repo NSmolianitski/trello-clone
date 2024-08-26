@@ -10,5 +10,6 @@ import { BoardColumnsModule } from '../board-columns/board-columns.module';
   imports: [BoardColumnsModule, TypeOrmModule.forFeature([Card, BoardColumn])],
   controllers: [CardsController],
   providers: [CardsService],
+  exports: [CardsService],
 })
 export class CardsModule {}
