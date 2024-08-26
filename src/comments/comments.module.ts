@@ -7,6 +7,7 @@ import { CommentsService } from './comments.service';
 import { CommentsController } from './comments.controller';
 import { CardsModule } from '../cards/cards.module';
 import { UsersModule } from '../users/users.module';
+import { CommentsMapper } from './comments.mapper';
 
 @Module({
   imports: [
@@ -15,6 +16,6 @@ import { UsersModule } from '../users/users.module';
     TypeOrmModule.forFeature([Comment, Card, User]),
   ],
   controllers: [CommentsController],
-  providers: [CommentsService],
+  providers: [CommentsService, CommentsMapper],
 })
 export class CommentsModule {}
