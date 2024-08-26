@@ -1,9 +1,14 @@
-﻿import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
+﻿import {
+  ConflictException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { LoginDto } from './dto/login.dto';
 import { UsersService } from '../users/users.service';
 import { RegisterDto } from './dto/register.dto';
 import { JwtService } from '@nestjs/jwt';
 import { TokenResponseDto } from './dto/token-response.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -34,8 +39,13 @@ export class AuthService {
     if (registeredUser === null)
       throw new ConflictException(`Email ${loginDto.email} does not exist`);
 
-    if (registeredUser.password !== loginDto.password)
-      throw new UnauthorizedException();
+    const isPasswordValid = await bcrypt.compare(
+      loginDto.password,
+      registeredUser.password,
+    );
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
 
     const payload = { sub: registeredUser.id, email: registeredUser.email };
     const accessToken = this.jwtService.sign(payload);
