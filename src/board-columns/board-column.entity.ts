@@ -24,6 +24,12 @@ export class BoardColumn {
   @Column()
   title: string;
 
+  @Column()
+  position: number;
+
+  @Column()
+  userId: number;
+
   @ManyToOne(() => User, (user) => user.boardColumns, {
     onDelete: 'CASCADE',
   })

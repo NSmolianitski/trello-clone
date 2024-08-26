@@ -8,6 +8,7 @@ export class BoardColumnsMapper {
       title: boardColumn.title,
       createdAt: boardColumn.createdAt,
       updatedAt: boardColumn.updatedAt,
+      position: boardColumn.position,
     };
   }
 }

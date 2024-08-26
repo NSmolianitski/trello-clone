@@ -18,4 +18,7 @@ export class BoardColumnResponseDto {
 
   @ApiProperty({ description: 'Column title', example: 'To-do' })
   title: string;
+
+  @ApiProperty({ description: 'Column position', example: 1 })
+  position: number;
 }

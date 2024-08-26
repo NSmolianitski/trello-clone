@@ -27,6 +27,12 @@ export class Card {
   @Column()
   description: string;
 
+  @Column()
+  position: number;
+
+  @Column()
+  columnId: number;
+
   @ManyToOne(() => BoardColumn, (column) => column.cards, {
     onDelete: 'CASCADE',
   })

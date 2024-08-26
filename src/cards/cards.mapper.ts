@@ -9,7 +9,8 @@ export class CardsMapper {
       updatedAt: card.updatedAt,
       title: card.title,
       description: card.description,
-      columnId: card.column.id,
+      columnId: card.columnId,
+      position: card.position,
     };
   }
 }

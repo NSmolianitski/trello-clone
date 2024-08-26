@@ -1,4 +1,4 @@
-﻿import { IsNumber, IsOptional, IsString, Length } from 'class-validator';
+﻿import { IsNumber, IsOptional, IsString, Length, Min } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateCardDto {
@@ -23,4 +23,10 @@ export class UpdateCardDto {
   @IsNumber({}, { message: 'Column Id must be a number' })
   @IsOptional()
   columnId: number;
+
+  @ApiProperty({ description: 'Position of the card', example: 1 })
+  @IsNumber({}, { message: 'Position must be a number' })
+  @Min(1, { message: 'Position must be greater than or equal to 1' })
+  @IsOptional()
+  position: number;
 }

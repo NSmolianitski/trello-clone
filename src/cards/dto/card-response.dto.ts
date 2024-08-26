@@ -27,4 +27,7 @@ export class CardResponseDto {
 
   @ApiProperty({ description: 'Card column ID', example: 1 })
   columnId: number;
+
+  @ApiProperty({ description: 'Card position', example: 1 })
+  position: number;
 }
