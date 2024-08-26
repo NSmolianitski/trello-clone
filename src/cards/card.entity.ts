@@ -3,15 +3,13 @@
   CreateDateColumn,
   Entity,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { User } from '../users/user.entity';
-import { Card } from '../cards/card.entity';
+import { BoardColumn } from '../board-columns/board-column.entity';
 
 @Entity()
-export class BoardColumn {
+export class Card {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -24,11 +22,11 @@ export class BoardColumn {
   @Column()
   title: string;
 
-  @ManyToOne(() => User, (user) => user.boardColumns, {
+  @Column()
+  description: string;
+
+  @ManyToOne(() => BoardColumn, (column) => column.cards, {
     onDelete: 'CASCADE',
   })
-  user: User;
-
-  @OneToMany(() => Card, (card) => card.column, { onDelete: 'CASCADE' })
-  cards: Card[];
+  column: BoardColumn;
 }
